@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convexity — Comptex Labs</title>
+<meta name="description" content="Notes on AI, finance and the space between. From Comptex Labs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--text:#1a1a18;
+--text-body:#333;
+--text-mid:#555;
+--text-dim:#999;
+--text-light:#bbb;
+--gold:#b8922e;
+--bg:#ffffff;
+--border:#e8e6e0;
+--serif:'Newsreader',Georgia,serif;
+--sans:'DM Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+::selection{background:var(--gold);color:#fff}
+
+nav{position:fixed;top:0;right:0;padding:32px 48px;z-index:100;display:flex;gap:32px}
+nav a{color:var(--text-mid);text-decoration:none;font-size:14px;font-weight:400;transition:color 0.2s}
+nav a:hover{color:var(--text)}
+
+.page{max-width:680px;margin:0 auto;padding:0 48px}
+
+.header{padding:160px 0 48px}
+.header h1{font-family:var(--serif);font-size:36px;font-weight:400;color:var(--text);margin-bottom:12px}
+.header p{font-size:15px;font-weight:300;color:var(--text-dim);line-height:1.6}
+
+.post-list{padding-bottom:80px}
+.post-item{display:grid;grid-template-columns:140px 1fr;gap:24px;padding:28px 0;border-top:1px solid var(--border);align-items:baseline}
+.post-item:last-child{border-bottom:1px solid var(--border)}
+.post-date{font-size:14px;color:var(--text-dim);font-weight:400}
+.post-title{font-family:var(--serif);font-size:18px;font-weight:400;color:var(--text);text-decoration:none;display:block;margin-bottom:4px;transition:color 0.2s}
+.post-title:hover{color:var(--gold)}
+.post-author{font-size:13px;color:var(--text-dim);font-weight:300}
+
+.empty-state{padding:60px 0;text-align:center}
+.empty-state p{font-family:var(--serif);font-size:18px;font-style:italic;color:var(--text-dim)}
+
+footer{text-align:center;padding:48px 0;border-top:1px solid var(--border)}
+footer p{font-size:13px;color:var(--text-dim)}
+footer a{color:var(--gold);text-decoration:none}
+
+@media(max-width:768px){
+nav{position:relative;padding:24px 24px;justify-content:center}
+.page{padding:0 24px}
+.header{padding:40px 0 36px}
+.post-item{grid-template-columns:1fr;gap:4px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/">Comptex Labs</a>
+  <a href="https://trustlogdynamics.com" target="_blank">TrustLog Dynamics</a>
+  <a href="/#contribute">Contribute</a>
+</nav>
+
+<div class="page">
+
+  <div class="header">
+    <h1>Convexity</h1>
+    <p>Notes on AI, finance and the space between.</p>
+  </div>
+
+  <div class="post-list">
+
+    <!-- TEMPLATE: copy this block for each new post
+    <div class="post-item">
+      <div class="post-date">Mar 25, 2026</div>
+      <div>
+        <a class="post-title" href="/convexity/your-post-slug.html">Your Post Title Here</a>
+        <div class="post-author">Anouar Boussif</div>
+      </div>
+    </div>
+    -->
+
+    <div class="empty-state">
+      <p>First notes coming soon.</p>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <p>Comptex Labs · Manchester, UK · <a href="https://x.com/Anouarbf2" target="_blank">@Anouarbf2</a></p>
+  <p style="margin-top:6px;color:var(--text-light);font-size:12px">© 2026 Comptex Labs. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
