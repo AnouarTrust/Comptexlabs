@@ -1,707 +1,152 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comptex Labs | AI Infrastructure</title>
+<title>Comptex Labs</title>
+<meta name="description" content="Comptex Labs is a financial AI research and product company. We build governance infrastructure for autonomous AI.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=DM+Mono:wght@300;400;500&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #fdfcfa;
-    --bg-w: #f6f4ef;
-    --bg-dark: #0e0e0e;
-    --border: #e4e1da;
-    --text: #111111;
-    --text-2: #555555;
-   --text-3: #999999;
-    --red: #b5321e;
-    --red-bg: #fef5f3;
-    --red-b: #e8cec9;
-    --green: #1b7340;
-    --green-bg: #f1faf4;
-    --green-b: #bee0cc;
-  }
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--text:#1a1a18;
+--text-body:#333;
+--text-mid:#555;
+--text-dim:#999;
+--text-light:#bbb;
+--gold:#b8922e;
+--bg:#ffffff;
+--border:#e8e6e0;
+--serif:'Newsreader',Georgia,serif;
+--sans:'DM Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+::selection{background:var(--gold);color:#fff}
 
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior:smooth; }
+nav{position:fixed;top:0;right:0;padding:32px 48px;z-index:100;display:flex;gap:32px}
+nav a{color:var(--text-mid);text-decoration:none;font-size:14px;font-weight:400;transition:color 0.2s}
+nav a:hover{color:var(--text)}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Geist', -apple-system, sans-serif;
-    font-weight: 400;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
+.page{max-width:680px;margin:0 auto;padding:0 48px}
 
-  ::selection { background: rgba(181,50,30,0.08); }
-
-  .w { max-width: 680px; margin: 0 auto; padding: 0 24px; }
-  .ww { max-width: 960px; margin: 0 auto; padding: 0 24px; }
-
-  /* ═══ Announcement ═══ */
-  .ann {
-    background: var(--text);
-    padding: 11px 24px;
-    text-align: center;
-  }
-
-  .ann a {
-    font-size: 13px;
-    color: rgba(255,255,255,0.6);
-    text-decoration: none;
-    letter-spacing: 0.3px;
-    transition: color 0.2s;
-  }
-
-  .ann a:hover { color: #fff; }
-  .ann strong { color: #fff; font-weight: 500; }
-
-  /* ═══ Nav ═══ */
-  nav {
-    padding: 14px 0;
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    background: var(--bg);
-    z-index: 100;
-  }
-
-  .nav-in {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .logo-a {
-    display: flex;
-    align-items: center;
-    gap: 0px;
-    text-decoration: none;
-    color: var(--text);
-  }
-
-  .logo-word {
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  text-transform: uppercase;
+.hero{padding:160px 0 80px}
+.logo{font-family:var(--serif);font-size:clamp(36px,5.5vw,56px);font-weight:300;color:var(--text-light);line-height:1;letter-spacing:8px;margin-bottom:60px;animation:breathe 6s ease-in-out infinite;animation-delay:2.5s;white-space:nowrap}
+.logo span{display:inline-block;opacity:0;animation:letterIn 0.6s ease forwards}
+@keyframes letterIn{
+0%{opacity:0;transform:translateY(12px)}
+100%{opacity:1;transform:translateY(0)}
+}
+@keyframes breathe{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-4px)}
 }
 
-.logo-labs {
-  font-size: 20px;
-  font-weight: 300;
-  letter-spacing: 1px;
-  margin-left: 4px;
-  color: var(--text-3);
-  text-transform: uppercase;
+.announcement{display:inline-flex;align-items:center;gap:12px;margin-bottom:28px;padding:8px 0;border-bottom:1px solid var(--border)}
+.announcement .badge{font-size:11px;font-weight:600;letter-spacing:1px;color:var(--text-mid);background:#f0eeea;padding:3px 10px;border-radius:3px}
+.announcement a{font-size:15px;color:var(--text-body);text-decoration:none;transition:color 0.2s}
+.announcement a:hover{color:var(--gold)}
+
+.intro{margin-bottom:16px}
+.intro p{font-family:var(--serif);font-size:20px;font-weight:400;line-height:1.7;color:var(--text-body);margin-bottom:20px}
+.intro p:last-child{margin-bottom:0}
+.intro p a{color:var(--gold);text-decoration:none}
+.intro p a:hover{border-bottom:1px solid var(--gold)}
+
+.separator{height:1px;background:var(--border);margin:24px 0}
+
+.belief{margin-bottom:72px}
+.belief h2{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--text);margin-bottom:20px;line-height:1.2;letter-spacing:-0.3px}
+.belief h2 em{font-style:italic}
+.belief p{font-size:16px;font-weight:300;line-height:1.9;color:var(--text-body);max-width:600px}
+.belief p+p{margin-top:16px}
+
+.contribute-section{margin-bottom:80px}
+.contribute-section h2{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--text);margin-bottom:20px;line-height:1.2}
+.contribute-section p{font-size:16px;font-weight:300;line-height:1.9;color:var(--text-body);max-width:600px;margin-bottom:20px}
+.contribute-section .links{margin-top:24px}
+.contribute-section .links a{color:var(--gold);text-decoration:none;font-size:15px;margin-right:24px;font-weight:400}
+.contribute-section .links a:hover{border-bottom:1px solid var(--gold)}
+
+footer{text-align:center;padding:48px 0;border-top:1px solid var(--border);margin-top:40px}
+footer p{font-size:13px;color:var(--text-dim)}
+footer a{color:var(--gold);text-decoration:none}
+
+@media(max-width:768px){
+nav{position:relative;padding:24px 24px;justify-content:center}
+.page{padding:0 24px}
+.hero{padding:40px 0 60px}
+.logo{font-size:56px}
 }
-
-  .nav-r { display: flex; gap: 24px; align-items: center; }
-  .nav-r a {
-    font-size: 13px;
-    color: var(--text-3);
-    text-decoration: none;
-    transition: color 0.15s;
-  }
-  .nav-r a:hover { color: var(--text); }
-
-  /* ═══ Hero — Video First ═══ */
-  .hero-video {
-    background: var(--bg-dark);
-    padding: 0;
-    position: relative;
-  }
-
-  .hero-video .vid-container {
-    max-width: 960px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .hero-video .vid-container iframe {
-    width: 100%;
-    aspect-ratio: 16/9;
-    border: none;
-    display: block;
-  }
-
-  .vid-label {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-    background: rgba(0,0,0,0.6);
-    padding: 4px 10px;
-    border-radius: 3px;
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  /* ═══ Mission ═══ */
-  .mission {
-    padding: 72px 0 56px;
-    text-align: center;
-  }
-
-  .mission h1 {
-    font-family: 'Newsreader', Georgia, serif;
-    font-size: clamp(32px, 4.5vw, 48px);
-    font-weight: 400;
-    line-height: 1.25;
-    letter-spacing: -0.5px;
-    margin-bottom: 20px;
-  }
-
-  .mission h1 em { font-style: italic; }
-
-  .mission-sub {
-    font-size: 17px;
-    color: var(--text-2);
-    font-weight: 300;
-    max-width: 520px;
-    margin: 0 auto;
-    line-height: 1.8;
-  }
-
-  /* ═══ Numbers ═══ */
-  .nums {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    margin: 0 0 8px;
-  }
-
-  .nums .n {
-    padding: 28px 0;
-    text-align: center;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nums .n + .n { border-left: 1px solid var(--border); }
-
-  .nums .nv {
-    font-family: 'DM Mono', monospace;
-    font-size: 28px;
-    font-weight: 400;
-    margin-bottom: 4px;
-  }
-
-  .nums .nv.red { color: var(--red); }
-  .nums .nv.green { color: var(--green); }
-
-  .nums .nl { font-size: 11px; color: var(--text-3); line-height: 1.4; }
-
-  .cap {
-    font-size: 11px;
-    color: var(--text-3);
-    font-style: italic;
-    text-align: center;
-    padding: 8px 0 0;
-  }
-
-  /* ═══ Divider ═══ */
-  .div { border: none; border-top: 1px solid var(--border); margin: 64px 0; }
-
-  /* ═══ Section ═══ */
-  .so {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--text-3);
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-  }
-
-  h2 {
-    font-family: 'Newsreader', Georgia, serif;
-    font-size: 28px;
-    font-weight: 400;
-    line-height: 1.3;
-    letter-spacing: -0.3px;
-    margin-bottom: 12px;
-  }
-
-  .ld {
-    font-size: 16px;
-    color: var(--text-2);
-    font-weight: 300;
-    line-height: 1.8;
-    max-width: 540px;
-    margin-bottom: 36px;
-  }
-
-  /* ═══ Video pair ═══ */
-  .vid-pair {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin: 32px 0;
-  }
-
-  .vid-card {
-    border-radius: 4px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-  }
-
-  .vid-card iframe {
-    width: 100%;
-    aspect-ratio: 16/9;
-    border: none;
-    display: block;
-  }
-
-  .vid-card-info {
-    padding: 12px 14px;
-    border-top: 1px solid var(--border);
-  }
-
-  .vid-card-info h4 {
-    font-size: 13px;
-    font-weight: 500;
-    margin-bottom: 2px;
-  }
-
-  .vid-card-info p {
-    font-size: 11px;
-    color: var(--text-3);
-  }
-
-  .vid-card.bad { border-color: var(--red-b); }
-  .vid-card.bad .vid-card-info { background: var(--red-bg); }
-  .vid-card.bad h4 { color: var(--red); }
-
-  .vid-card.ok { border-color: var(--green-b); }
-  .vid-card.ok .vid-card-info { background: var(--green-bg); }
-  .vid-card.ok h4 { color: var(--green); }
-
-  /* ═══ Terminal ═══ */
-  .term {
-    background: #0e0e0e;
-    border-radius: 8px;
-    overflow: hidden;
-    margin: 32px 0;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.1);
-  }
-
-  .term-bar {
-    background: #1a1a1a;
-    padding: 11px 14px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .dot { width:10px; height:10px; border-radius:50%; }
-  .dot.r { background:#ff5f56; }
-  .dot.y { background:#ffbd2e; }
-  .dot.g { background:#27c93f; }
-
-  .term-t {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: #444;
-    margin-left: 8px;
-  }
-
-  .term-b {
-    padding: 18px 18px 22px;
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    line-height: 2;
-    color: #888;
-    overflow-x: auto;
-    white-space: pre;
-  }
-
-  .tw { color:#e0e0e0; } .tr { color:#ff6b6b; } .tg { color:#69db7c; }
-  .ta { color:#ffd43b; } .ti { color:#444; }
-  .ts { margin-top:8px; padding-top:8px; border-top:1px solid #1e1e1e; }
-
-  /* ═══ Thesis ═══ */
-  .thesis {
-    border-left: 2px solid var(--red);
-    padding: 20px 28px;
-    margin: 48px 0;
-  }
-
-  .thesis p {
-    font-family: 'Newsreader', Georgia, serif;
-    font-size: 19px;
-    font-style: italic;
-    line-height: 1.7;
-  }
-
-  /* ═══ Evidence ═══ */
-  .eq {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    margin: 32px 0;
-  }
-
-  .eq-i {
-    padding: 18px;
-    border: 1px solid var(--border);
-    border-radius: 3px;
-  }
-
-  .eq-i blockquote { font-size: 14px; line-height: 1.6; margin-bottom: 8px; }
-  .eq-i cite {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--text-3);
-    font-style: normal;
-  }
-
-  /* ═══ Products ═══ */
-  .prods {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin: 32px 0;
-  }
-
-  .prod {
-    padding: 24px;
-    border: 1px solid var(--border);
-    border-radius: 3px;
-  }
-
-  .prod .po {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--text-3);
-    margin-bottom: 10px;
-  }
-
-  .prod h3 {
-    font-family: 'Newsreader', Georgia, serif;
-    font-size: 21px;
-    font-weight: 500;
-    margin-bottom: 6px;
-  }
-
-  .prod p { font-size: 14px; color: var(--text-2); font-weight: 300; line-height: 1.6; margin-bottom: 14px; }
-  .prod a { font-size: 13px; color: var(--red); text-decoration: none; font-weight: 500; }
-  .prod a:hover { text-decoration: underline; }
-
-  /* ═══ Collaborate ═══ */
-  .col-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 14px;
-    margin: 32px 0;
-  }
-
-  .col-i {
-    padding: 20px;
-    border: 1px solid var(--border);
-    border-radius: 3px;
-  }
-
-  .col-i h4 {
-    font-family: 'Newsreader', Georgia, serif;
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 6px;
-  }
-
-  .col-i p { font-size: 13px; color: var(--text-2); font-weight: 300; line-height: 1.6; }
-
-  .col-cta {
-    padding: 22px 26px;
-    background: var(--bg-w);
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    margin-bottom: 0;
-  }
-
-  .col-cta p {
-    font-family: 'Newsreader', Georgia, serif;
-    font-size: 17px;
-    font-style: italic;
-    margin-bottom: 12px;
-  }
-
-  .col-links { display: flex; gap: 20px; }
-  .col-links a { font-size: 13px; color: var(--red); text-decoration: none; font-weight: 500; }
-  .col-links a:hover { text-decoration: underline; }
-
-  /* ═══ People ═══ */
-  .team { display: flex; align-items: center; gap: 16px; margin-top: 24px; }
-
-  .team-ava {
-    width: 56px; height: 56px;
-    border-radius: 50%;
-    background: var(--bg-w);
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Newsreader', serif;
-    font-size: 22px;
-    color: var(--text-2);
-    flex-shrink: 0;
-  }
-
-  .team-t h4 { font-family: 'Newsreader', serif; font-size: 17px; font-weight: 500; }
-  .team-t p { font-size: 13px; color: var(--text-2); font-weight: 300; }
-  .team-t a { font-size: 12px; color: var(--red); text-decoration: none; }
-  .team-t a:hover { text-decoration: underline; }
-
-  /* ═══ Footer ═══ */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 22px 0;
-    margin-top: 56px;
-  }
-
-  .foot {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  footer p { font-size: 12px; color: var(--text-3); }
-  footer a { color: var(--text-2); text-decoration: none; font-size: 12px; }
-  footer a:hover { color: var(--text); }
-  .f-l { display: flex; gap: 20px; }
-
-  /* ═══ Responsive ═══ */
-  @media (max-width:768px) {
-    .nums { grid-template-columns: 1fr 1fr; }
-    .nums .n { border-left: none !important; }
-    .nums .n:nth-child(2n) { border-left: 1px solid var(--border) !important; }
-    .vid-pair, .eq, .prods, .col-grid { grid-template-columns: 1fr; }
-    .mission { padding: 56px 0 40px; }
-    .nav-r { gap: 16px; }
-    .nav-r a { font-size: 12px; }
-  }
 </style>
 </head>
 <body>
 
-<!-- Announcement -->
-<div class="ann">
-  <a href="#trustlog"><strong>New</strong> &nbsp;— Introducing TrustLog Guard, the financial immune system for AI agents</a>
-</div>
-
-<!-- Nav -->
 <nav>
-  <div class="nav-in">
-    <a href="/" class="logo-a">
-      <span class="logo-word">COMPTEX</span><span class="logo-labs">LABS</span>
-    </a>
-    <div class="nav-r">
-      <a href="#evidence">Evidence</a>
-      <a href="#products">Products</a>
-      <a href="#collaborate">Collaborate</a>
-      <a href="https://github.com/AnouarTrust/trustlog-guard" target="_blank">GitHub</a>
-    </div>
-  </div>
+  <a href="https://trustlogdynamics.com" target="_blank">TrustLog Dynamics</a>
+  <a href="/convexity">Convexity</a>
+  <a href="#contribute">Contribute</a>
 </nav>
 
-<!-- Hero: Video -->
-<div class="hero-video">
-  <div class="vid-container">
-    <div class="vid-label">Live demonstration — AWS EC2</div>
-    <iframe src="https://www.youtube.com/embed/7aTynBDoe8k" allowfullscreen></iframe>
-  </div>
-</div>
+<div class="page">
 
-<!-- Mission -->
-<div class="w">
-  <section class="mission">
-    <h1>AI agents spend money.<br><em>Nobody's watching.</em></h1>
-    <p class="mission-sub">Comptex builds financial governance for autonomous AI compute. We monitor, benchmark, and circuit-break AI spending before it becomes a loss you can't explain.</p>
-  </section>
-</div>
+  <div class="hero">
+    <div class="logo" aria-label="Comptex Labs"><span style="animation-delay:0s">C</span><span style="animation-delay:0.06s">O</span><span style="animation-delay:0.12s">M</span><span style="animation-delay:0.18s">P</span><span style="animation-delay:0.24s">T</span><span style="animation-delay:0.3s">E</span><span style="animation-delay:0.36s">X</span><span style="animation-delay:0.42s">&nbsp;</span><span style="animation-delay:0.5s">L</span><span style="animation-delay:0.56s">A</span><span style="animation-delay:0.62s">B</span><span style="animation-delay:0.68s">S</span></div>
 
-<!-- Numbers -->
-<div class="ww">
-  <div class="nums">
-    <div class="n"><div class="nv red">£5.27</div><div class="nl">Burned in 47 seconds<br>without governance</div></div>
-    <div class="n"><div class="nv green">$1.43</div><div class="nl">Caught by<br>circuit breaker</div></div>
-    <div class="n"><div class="nv">73%</div><div class="nl">Capital<br>preserved</div></div>
-    <div class="n"><div class="nv">47s</div><div class="nl">Time to total loss<br>without governance</div></div>
-  </div>
-  <p class="cap">Live experiment. Real API costs. March 2026.</p>
-</div>
-
-<!-- Evidence -->
-<div class="w">
-  <hr class="div" id="evidence">
-  <div class="so">Experiment</div>
-  <h2>The 47-Second Flash Crash</h2>
-  <p class="ld">Same AI agent. Same task. Same recursive loop. One run had no financial governance. The other had TrustLog Guard active.</p>
-</div>
-
-<div class="ww">
-  <div class="vid-pair">
-    <div class="vid-card bad">
-      <iframe src="https://www.youtube.com/embed/7aTynBDoe8k" allowfullscreen></iframe>
-      <div class="vid-card-info">
-        <h4>Without governance — £5.27 lost</h4>
-        <p>UNHEDGED · 47 seconds · Manual kill required · £403/hr projected burn</p>
-      </div>
+    <div class="announcement">
+      <span class="badge">NEW</span>
+      <a href="https://trustlogdynamics.com" target="_blank">TrustLog Dynamics — open-source cost governance for AI agents</a>
     </div>
-    <div class="vid-card ok">
-      <iframe src="https://www.youtube.com/embed/A2M3o7xy9ek" allowfullscreen></iframe>
-      <div class="vid-card-info">
-        <h4>With TrustLog Guard — $3.84 saved</h4>
-        <p>HEDGED · Circuit breaker at $1.43 · Auto post-mortem generated</p>
-      </div>
+
+    <div class="intro">
+      <p>Comptex Labs is a financial AI research and product company. We build governance infrastructure for autonomous AI systems.</p>
+      <p>AI capabilities have advanced dramatically. Agents now operate autonomously, spending money around the clock, making decisions without human oversight and scaling faster than any team can monitor. But the governance layer hasn't kept up. There are no circuit breakers. No risk limits. No cost controls. The financial safeguards that have protected capital markets for decades simply don't exist in the AI world.</p>
+      <p>We're building them. Comptex Labs applies quantitative finance frameworks to AI operations, starting with cost governance and expanding into risk scoring, regulatory compliance and operational resilience. Our first product, <a href="https://trustlogdynamics.com" target="_blank">TrustLog Dynamics</a>, is live and open source.</p>
     </div>
   </div>
 
-  <!-- Terminal: post-mortem -->
-  <div class="term">
-    <div class="term-bar">
-      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
-      <span class="term-t">auto post-mortem — /risk</span>
-    </div>
-    <div class="term-b"><span class="tw">TrustLog Guard — Risk Assessment</span>
-<span class="tr">RISK: 7/10</span>
+  <div class="separator"></div>
 
-<span class="ti">WHY:</span>
-  <span class="ta">▸ Cost-at-Risk breached</span>         <span class="ti">+2</span>  <span class="tw">Spend exceeds 95th percentile</span>
-  <span class="ta">▸ Model concentration critical</span>  <span class="ti">+2</span>  <span class="tw">HHI = 0.82 (86% on opus)</span>
-  <span class="ta">▸ Burn rate spike</span>               <span class="ti">+1</span>  <span class="tw">8.3x above normal</span>
-  <span class="ta">▸ Budget at 84%</span>                <span class="ti">+1</span>  <span class="tw">Daily limit approaching</span>
-<div class="ts"><span class="ti">COST-AT-RISK</span>
-  CaR(95%):  $14.20
-  Today:     $14.43  <span class="tr">BREACH</span></div><div class="ts"><span class="ti">CONCENTRATION</span>
-  HHI: 0.82  <span class="tr">HIGH</span>
-  If opus pricing +20% → costs +17%</div><div class="ts"><span class="tg">→ Loop halted. Move recursive tasks to haiku.
-  Saves $1.80/day. Drops HHI to 0.45.</span></div></div>
+  <div class="belief">
+    <h2>Financial governance shouldn't be <em>optional</em></h2>
+    <p>Every traded asset on every exchange in the world has governance. Risk limits, position monitoring, circuit breakers. These aren't luxuries. They're requirements. They exist because we learned the hard way what happens without them.</p>
+    <p>Autonomous AI agents now manage budgets, execute tasks and consume resources at scale. They deserve the same governance rigour. We think the absence of financial controls around AI spend is not a feature of early-stage technology. It's a gap that will close. We intend to close it.</p>
   </div>
-</div>
 
-<!-- Thesis -->
-<div class="w">
-  <div class="thesis">
-    <p>In traditional finance, every traded asset has governance: risk limits, position monitoring, circuit breakers. AI compute has none. We are building the governance layer that autonomous compute requires.</p>
+  <div class="belief">
+    <h2>We learn by <em>shipping</em></h2>
+    <p>We don't write papers about what should be built. We build it, deploy it, test it in live conditions and publish what we find. TrustLog Dynamics was tested against real AI agents on real infrastructure before we wrote a single word about it.</p>
+    <p>Research and product are the same thing here. Every deployment is an experiment. Every user is a data point. Every failure is a finding. The best way to understand AI governance is to govern actual AI.</p>
   </div>
-</div>
 
-<!-- Market -->
-<div class="w">
-  <hr class="div">
-  <div class="so">Market</div>
-  <h2>The problem is real and growing</h2>
-  <p class="ld">We didn't invent this problem. These founders are living it.</p>
-</div>
-
-<div class="ww">
-  <div class="eq">
-    <div class="eq-i"><blockquote>Saved $25,000 per month by switching one AI model. Margins went from 50% to 80% overnight.</blockquote><cite>Pieter Levels — Photo AI</cite></div>
-    <div class="eq-i"><blockquote>AI model costs swung from $0.003 to $0.15 per image — 50x — then back to $0.05.</blockquote><cite>Pieter Levels — on cost volatility</cite></div>
-    <div class="eq-i"><blockquote>Running 14 autonomous AI agents for marketing. Every 15 minutes they check a shared dashboard.</blockquote><cite>Brett Goldstein — agent orchestration</cite></div>
-    <div class="eq-i"><blockquote>46.6% of US businesses now pay for AI. Average contract heading to $1M in 2026.</blockquote><cite>Ramp AI Index</cite></div>
+  <div class="belief">
+    <h2>This field doesn't exist yet</h2>
+    <p>There is no textbook for AI cost governance. No established benchmarks. No standard frameworks. No academic canon. The conferences haven't been named. The journals haven't been founded. The terminology is still being invented.</p>
+    <p>That's why we build in public and publish openly. The foundations of this field will be laid by the people who show up early and do the work. We're here and we're working.</p>
   </div>
-</div>
 
-<!-- Products -->
-<div class="w">
-  <hr class="div" id="products">
-  <div class="so">Products</div>
-  <h2>Two altitudes. One thesis.</h2>
-  <p class="ld">AI spending is invisible and it shouldn't be.</p>
-</div>
-
-<div class="ww" id="trustlog">
-  <div class="prods">
-    <div class="prod">
-      <div class="po">Agent Level</div>
-      <h3>TrustLog Guard</h3>
-      <p>Financial immune system for AI agents. Passive detection, circuit breakers, risk scoring. Install it. Forget about it. It watches.</p>
-      <a href="https://github.com/AnouarTrust/trustlog-guard" target="_blank">GitHub →</a>
-    </div>
-    <div class="prod">
-      <div class="po">Business Level</div>
-      <h3>NetMRR</h3>
-      <p>Your real MRR after AI costs. Which customers are profitable. Which aren't. The number Stripe doesn't show.</p>
-      <a href="https://netmrr.com" target="_blank">netmrr.com →</a>
-    </div>
+  <div class="belief">
+    <h2>The maths already <em>exists</em></h2>
+    <p>We don't need to invent new mathematics to govern AI costs. Bond convexity measures acceleration. Variance analysis detects mechanical patterns. Value-at-Risk quantifies exposure probabilistically. These frameworks were built over decades of real-world use in capital markets.</p>
+    <p>Our contribution is the application. Taking what works in one domain and proving it works in another. The insight is the bridge, not the destination.</p>
   </div>
-</div>
 
-<!-- Collaborate -->
-<div class="w">
-  <hr class="div" id="collaborate">
-  <div class="so">Collaborate</div>
-  <h2>This field doesn't exist yet.<br>Help us define it.</h2>
-  <p class="ld">Financial governance for AI agents has no papers, no benchmarks, no standards. We're looking for people who want to build the foundations.</p>
-</div>
+  <div class="separator"></div>
 
-<div class="ww">
-  <div class="col-grid">
-    <div class="col-i">
-      <h4>Research</h4>
-      <p>Academic partners to co-author foundational work. We have implementations, data, and a framework ready to formalise.</p>
-    </div>
-    <div class="col-i">
-      <h4>Technical</h4>
-      <p>Engineers in the AI agent ecosystem. If you build agents, orchestrators, or infra — we're building the financial layer underneath.</p>
-    </div>
-    <div class="col-i">
-      <h4>Institutional</h4>
-      <p>Universities, accelerators, research bodies. Open to fellowships, joint programmes, and sponsored research into compute risk.</p>
+  <div class="contribute-section" id="contribute">
+    <h2>Contribute</h2>
+    <p>AI cost governance is too important to build behind closed doors. We're looking for researchers, engineers and institutions who want to help define this field while it's still being formed.</p>
+    <p>If you work on AI safety, operational risk, financial regulation or agent infrastructure and something here resonates, we'd welcome a conversation.</p>
+    <div class="links">
+      <a href="https://x.com/Anouarbf2" target="_blank">X</a>
+      <a href="https://github.com/AnouarTrust" target="_blank">GitHub</a>
+      <a href="/cdn-cgi/l/email-protection#70111e1f0511020619034130171d11191c5e131f1d">Email</a>
     </div>
   </div>
 
-  <div class="col-cta">
-    <p>If this resonates, we'd like to hear from you.</p>
-    <div class="col-links">
-      <a href="https://x.com/Anouarbf2" target="_blank">X →</a>
-      <a href="https://github.com/AnouarTrust" target="_blank">GitHub →</a>
-      <a href="https://uk.linkedin.com" target="_blank">LinkedIn →</a>
-    </div>
-  </div>
 </div>
 
-<!-- People -->
-<div class="w">
-  <hr class="div">
-  <div class="so">People</div>
-
-  <div class="team">
-  <div class="team-ava">AB</div>
-  <div class="team-t">
-    <h4>Anouar Boussif</h4>
-    <p>Quant-finance technologist engineering deterministic risk management for autonomous systems. Building the financial liquidity layer for the agentic economy.</p>
-    <a href="https://x.com/Anouarbf2">X</a> · 
-    <a href="https://github.com/AnouarTrust">GitHub</a> · 
-    <a href="https://netmrr.com">netmrr.com</a> · 
-    <a href="mailto:anouarvis1@gmail.com" style="font-weight: 600; color: var(--red);">Direct</a>
-  </div>
-</div>
-</div>
-
-<!-- Footer -->
 <footer>
-  <div class="foot">
-    <p>© 2026 COMPTEX LABS · MANCHESTER, UK</p>
-    <div class="f-l">
-      <a href="https://netmrr.com">NetMRR</a>
-      <a href="https://github.com/AnouarTrust/trustlog-guard">GitHub</a>
-      <a href="https://x.com/Anouarbf2">X</a>
-    </div>
-  </div>
-</footer>
-
-</body>
-</html>
+  <p>Comptex Labs · Manchester, UK · <a href="https://x.com/Anouarbf2" target="_blank">@Anouarbf2</a></p>
+  <p style="margin-top:6px;color:var(--text-light);font-size:12px">© 2026 Comptex Labs. All right
